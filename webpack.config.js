@@ -3,6 +3,9 @@ const HtmlWebpackPlugin = require('html-webpack-plugin')
 const { CleanWebpackPlugin } = require('clean-webpack-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const CssMinimizerPlugin = require('css-minimizer-webpack-plugin')
+const CopyWebpackPlugin = require('copy-webpack-plugin')
+
+
 
 
 module.exports = {
@@ -10,7 +13,7 @@ module.exports = {
     mode: "development",
     entry: "./js/index.js",
     output: {
-        filename: '[name].js',
+        filename: '[name].[hash].js',
         path: path.resolve(__dirname, 'dist')
     },
     optimization: {
@@ -35,8 +38,9 @@ module.exports = {
         }),
         new CleanWebpackPlugin(),
         new MiniCssExtractPlugin({
-            filename: '[name].css'
-        })
+            filename: '[name].[hash].css'
+        }),
+      
     ],
     module: {
         rules: [
@@ -51,7 +55,6 @@ module.exports = {
                 test: /\.html$/i,
                 loader: 'html-loader',
             },
-           
         ]
     }
 }

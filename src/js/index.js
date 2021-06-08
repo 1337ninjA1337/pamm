@@ -6,9 +6,6 @@ let prewBttn = document.querySelectorAll('.left-arrow')
 let nextBttn = document.querySelectorAll('.right-arrow')
 
 
-console.log(prewBttn);
-
-
 let x = 0
 
 prewBttn.forEach(el => {
@@ -51,18 +48,43 @@ setInterval(()=>{
     showSliderItem(x+1)
 }, 3000)
 
+function detectColorScheme(){
+    var theme="light";
+    if(localStorage.getItem("theme")){
+        if(localStorage.getItem("theme") == "dark"){
+            var theme = "dark";
+        }
+    } else if(!window.matchMedia) {
+        return false;
+    } else if(window.matchMedia("(prefers-color-scheme: dark)").matches) {
+        var theme = "dark";
+    }
+    if (theme=="dark") {
+         document.documentElement.setAttribute("data-theme", "dark");
+    }
+}
+detectColorScheme();
 
-let btn = document.querySelector("#mode");
-let theme = document.querySelector("link");
+const toggleSwitch = document.querySelector('#mode');
+let theme = 'light'
+function switchTheme(theme) {
+    if (theme=='dark') {
+        localStorage.setItem('theme', 'dark');
+        document.documentElement.setAttribute('data-theme', 'dark');
+    } else {
+        localStorage.setItem('theme', 'light');
+        document.documentElement.setAttribute('data-theme', 'light');
+        toggleSwitch.checked = false;
+    }    
+}
+toggleSwitch.addEventListener('click', ()=>{
 
-// Listen for a click on the button
-btn.addEventListener("click", function() {
-  if (theme.getAttribute("href") == "style-light.css") {
-    // ... then switch it to "dark-theme.css"
-    theme.href = "style-dark.css";
-  // Otherwise...
-  } else {
-    // ... switch it to "light-theme.css"
-    theme.href = "style-light.css";
-  }
+    if(theme=='light'){
+        document.querySelectorAll('img').forEach((el)=>{
+            console.log(el);
+        })
+        theme = 'dark'
+    }else theme = 'light'
+    switchTheme(theme)
+
 });
