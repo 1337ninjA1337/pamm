@@ -10,7 +10,7 @@ module.exports = {
     mode: "development",
     entry: "./js/index.js",
     output: {
-        filename: '[name].[hash].js',
+        filename: '[name].js',
         path: path.resolve(__dirname, 'dist')
     },
     optimization: {
@@ -35,7 +35,7 @@ module.exports = {
         }),
         new CleanWebpackPlugin(),
         new MiniCssExtractPlugin({
-            filename: '[name].[hash].css'
+            filename: '[name].css'
         })
     ],
     module: {
