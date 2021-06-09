@@ -33,9 +33,9 @@ document.querySelectorAll(".right-arrow").forEach(el=>{
 })
 
 
-setInterval(() => {
-    showSlides(slideIndex +=1)
-}, 10000)
+// setInterval(() => {
+//     showSlides(slideIndex +=1)
+// }, 10000)
 
 
 
