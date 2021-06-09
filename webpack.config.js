@@ -3,7 +3,6 @@ const HtmlWebpackPlugin = require('html-webpack-plugin')
 const { CleanWebpackPlugin } = require('clean-webpack-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const CssMinimizerPlugin = require('css-minimizer-webpack-plugin')
-const CopyWebpackPlugin = require('copy-webpack-plugin')
 
 
 
@@ -33,27 +32,27 @@ module.exports = {
         new HtmlWebpackPlugin({
             template: "./index.html",
             minify: {
-                collapseWhitespace: true
+                collapseWhitespace: false
             }
         }),
         new CleanWebpackPlugin(),
         new MiniCssExtractPlugin({
             filename: '[name].[hash].css'
         }),
+        
       
-    ],
+    ], 
     module: {
         rules: [
             {
-                test: /\.s?css$/,
+                test: /\.scss$/,
                 use: [{
                     loader: MiniCssExtractPlugin.loader,
-                    options: {},
                 }, 'css-loader', 'sass-loader']
             },
             {
                 test: /\.html$/i,
-                loader: 'html-loader',
+                use: ["html-loader"],
             },
         ]
     }
