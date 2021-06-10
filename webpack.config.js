@@ -51,6 +51,12 @@ module.exports = {
                 }, 'css-loader', 'sass-loader']
             },
             {
+                test: /\.css$/,
+                use: [{
+                    loader: MiniCssExtractPlugin.loader,
+                }, 'css-loader']
+            },
+            {
                 test: /\.html$/i,
                 use: ["html-loader"],
             },

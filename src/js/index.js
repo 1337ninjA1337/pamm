@@ -1,5 +1,7 @@
 import "../css/style.scss";
+import "../css/glider.css"
 import html from "../index.html";
+import "./glider.min.js"
 
 
 
@@ -32,10 +34,6 @@ document.querySelectorAll(".right-arrow").forEach(el=>{
     })
 })
 
-
-// setInterval(() => {
-//     showSlides(slideIndex +=1)
-// }, 10000)
 
 
 
@@ -78,4 +76,10 @@ toggleSwitch.forEach(el => {
         switchTheme(theme)
 
     });
+})
+
+
+new Glider(document.querySelector(".slider-wrapper"),{
+    slidesToShow: 1,
+    draggable: true
 })
